@@ -91,3 +91,6 @@ node_modules
 
 app/test/*
 
+bin/Microsoft.NodejsTools.WebRole.dll
+*.cache
+obj/Debug/IsiCrunch.njsproj.FileListAbsolute.txt
