@@ -83,3 +83,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+.vs
+bower_components
+node_modules
+*.dat
+
+app/test/*
+
