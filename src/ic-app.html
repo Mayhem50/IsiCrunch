@@ -7,15 +7,19 @@
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="ic-icons.html">
+<link rel="import" href="shared-styles.html">
 
 <dom-module id="ic-app">
   <template>
-    <style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment shared-styles">
       :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
@@ -56,22 +60,35 @@
           @apply(--layout-flex);
       }
 
-      #footer{
-          height:80px;
-          background-color:#ff0000;
-      }
-
       #pages-content{
           height:100%;
       }
 
       .logged-toolbar{
           background-color:#3d3d3d;
+          justify-content: flex-end;
       }
       
       .default-toolbar{
           background-color:#ef6751;
       }
+      
+      #home-toolbar{
+      	width: 100%;
+      }  
+      
+      #links > paper-button, #links > paper-button > a{
+      	text-transform: none;
+      	padding: 5px 7px;
+      	color: #ffffff;
+      	border-radius: 5px;
+      }
+      
+      #links > paper-button:hover > a, #links > paper-button.iron-selected > a{
+		background-color: #ffffff;
+		color: #ef6751;		
+      }
+      
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -84,7 +101,9 @@
     <app-drawer-layout id="layout" fullbleed narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" >
-        <app-toolbar>Menu</app-toolbar>
+        <app-toolbar>
+        	<div id="customer-logo"></div>
+        </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">          
           <a name="dashboard" href="/dashboard">Dashboard</a>
           <a name="view3" href="/view3">Other Page</a>
@@ -96,8 +115,24 @@
 
         <app-header condenses reveals effects="waterfall">
             <app-toolbar id="toolbar">
-                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-                <div main-title>My App</div>
+            
+            	<!-- Home region -->
+            	<div id="home-toolbar" class="layout horizontal justified">
+	                <div main-title>ISI Crunch</div>
+	                <iron-selector id="links" selected="2">
+	                	<paper-button><a href="http://www.isicrunch.com">Company</a></paper-button>
+	                	<paper-button><a>Product</a></paper-button>
+	                	<paper-button><a>ISICrunch Access</a></paper-button>
+	                	<paper-button><a href="http://www.isicrunch.com/en/contact/index.php">Contact</a></paper-button>
+	                	<paper-button><a>Support</a></paper-button>
+                	</iron-selector>
+                </div>
+                
+                <!-- WebApp region -->
+            	<div id="webapp-toolbar">
+	                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+	                <div>ISI Crunchy</div>
+                </div>
             </app-toolbar>
         </app-header>
 
@@ -112,8 +147,6 @@
                   <my-view404 name="view404"></my-view404>
               </iron-pages>
           </div>
-
-          <div id="footer"></div>
       </app-header-layout>
     </app-drawer-layout>
   </template>
@@ -139,9 +172,13 @@
           observers: [
             '_routePageChanged(routeData.page)'
           ],
+          
+          ready: function(){
+        	  //this.logged = window.sessionStorage.getItem('log');  
+          },
 
           _routePageChanged: function (page) {
-              //if (!this.logged) { this.routeData.page = '';}
+        	  
               this.page = page || 'home';              
           },
 
@@ -156,32 +193,35 @@
 
               if (this.logged) {
                   this.set('routeData.page', 'dashboard');
+                  window.sessionStorage.setItem('log', true);
               }
               else {
                   this.set('routeData.page', '');
               }
 
               this._setToolbar();
-              this._setFooter();
-          },
-
-          _setFooter:function(){
-              if (this.logged) {
-                  this.$.footer.style.visibility = 'visible';
-              }
-              else {
-                  this.$.footer.style.visibility = 'hidden';
-              }
           },
 
           _setToolbar: function () {
               if (this.logged) {
                   this.$.toolbar.classList.remove('default-toolbar');
                   this.$.toolbar.classList.add('logged-toolbar');
+
+                  this.$$('#home-toolbar').classList.add('hidden');
+                  this.$$('#home-toolbar').classList.remove('visible');
+                  
+                  this.$$('#webapp-toolbar').classList.add('visible');
+                  this.$$('#webapp-toolbar').classList.remove('hidden');
               }
               else {
                   this.$.toolbar.classList.remove('logged-toolbar');
                   this.$.toolbar.classList.add('default-toolbar');
+                  
+                  this.$$('#home-toolbar').classList.add('visible');
+                  this.$$('#home-toolbar').classList.remove('hidden');
+
+                  this.$$('#webapp-toolbar').classList.add('hidden');
+                  this.$$('#webapp-toolbar').classList.remove('visible');
               }
           },
 
