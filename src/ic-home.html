@@ -72,9 +72,14 @@
 			    justify-content: center;
 			    align-items: center;
             }
+
+            .content-svg{
+                width: 265px;
+                margin: 0 20px;
+            }
             
             #middle{
-            	flex-grow: 3;
+                height: 250px;
             	width: 100%;
                 background-color:white;
             }
@@ -121,6 +126,7 @@
 
 		<div id="content" class="layout vertical">
 			<div id="logpart" class="layout vertical center-justified">
+                <embed class="content-svg" type="image/svg+xml" src="../images/home/logo_baseline.svg" />
 		        <paper-input no-label-float always-float-label="false" value="{{username}}"></paper-input>
 		        <paper-input id="input" no-label-float always-float-label="false" value="{{password}}" type="password"></paper-input>
 		
