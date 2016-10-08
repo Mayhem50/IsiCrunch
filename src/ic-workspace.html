@@ -1,0 +1,100 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="ic-bookwork.html">
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="ic-workspace">
+    <template>
+        <style include="iron-flex iron-flex-alignment shared-styles">
+            :host {
+                display: block;
+                height:100%;
+                display:flex;
+                flex-direction:column;
+            }
+
+            #header {
+                background-color: #ebebeb;
+                color: #666666;
+                height:40px;
+            }
+
+            #content {
+                overflow-x: auto;
+                background-color: #cdcdcd;
+                padding: 10px 0;
+                height:100%;
+            }
+        </style>
+
+        <div id="header">Work in progress</div>
+        <div id="content" class="layout horizontal">
+                <template is="dom-repeat" items="[[books]]">
+                    <ic-bookwork book="[[item]]"></ic-bookwork>
+                </template>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'ic-workspace',
+
+            properties: {
+                books: {
+                    type: Object,
+                    value: function () {
+                        return [
+                        {
+                            EAN: '978-0-201-3796-2',
+                            ISBN: '75123',
+                            title: 'Over Resteless Dream Seas',
+                            author: 'Madeleine Deny',
+                            publisher: 'Homemaid publisher',
+                            created: '11/30/2011',
+                            updated: '11/30/2011',
+                            picture: ''
+                        },
+                        {
+                            EAN: '426-0-048-81270-6',
+                            ISBN: '97814',
+                            title: 'Mobydick',
+                            author: 'Unknown',
+                            publisher: 'Unknown',
+                            created: '11/30/2011',
+                            updated: '11/30/2011',
+                            picture: ''
+                        },
+                        {
+                            EAN: '400-0-000-49820-9',
+                            ISBN: '65721',
+                            title: 'Guide du routard',
+                            author: 'Unknown',
+                            publisher: 'Unknown',
+                            created: '11/30/2011',
+                            updated: '11/30/2011',
+                            picture: ''
+                        },
+                        {
+                            EAN: '082-4-27402495-7',
+                            ISBN: '01296',
+                            title: 'Polymer Learn',
+                            author: 'Unknown',
+                            publisher: 'Unknown',
+                            created: '11/30/2011',
+                            updated: '11/30/2011',
+                            picture: ''
+                        }
+                        ];
+                    }
+                }
+            },
+
+            ready: function () {
+
+            }
+        });
+    </script>
+</dom-module>

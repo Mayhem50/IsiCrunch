@@ -1,0 +1,82 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="ic-indicator">
+    <template>
+        <style include="iron-flex iron-flex-alignment shared-styles">
+            :host {
+                display: block;
+                padding: 10px;
+            }
+
+            #card {
+                height: 180px;
+                width: 400px;
+            }
+
+            iron-icon {
+                width: 80px;
+                height: 80px;
+                color: rgba(216, 216, 216, 0.85);
+            }
+
+            paper-button {
+                text-transform: none;
+                margin-right: 50px;
+                border: 1px solid white;
+                height: 50px;
+                color: white;
+            }
+
+            #card > div {
+                margin-top: 30px;
+                margin-left: 40px;
+            }
+
+            #count {
+                margin-right: 50px;
+                font-size: 35px;
+                color: white;
+            }
+
+            #content {
+                justify-content: space-between;
+            }
+
+            #title {
+                color: rgba(216, 216, 216, 0.85);
+                font-size: 20px;
+            }
+        </style>
+        <div id="card" class="layout vertical">
+            <div id="title">{{title}}</div>
+            <div id="content" class="layout horizontal">
+                <iron-icon icon="{{icon}}"></iron-icon>
+                <div id="count">{{count}}</div>
+                <paper-button class="hidden">Upload PDF</paper-button>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'ic-indicator',
+
+            properties: {
+                color: String,
+                action: Boolean
+            },
+
+            ready: function () {
+                this.$.card.style.backgroundColor = this.color;
+
+                if (this.action) {
+                    this.$.count.classList.add('hidden');
+
+                    this.$$('paper-button').classList.remove('hidden');
+                    this.$$('paper-button').classList.add('visible');
+                }
+            }
+        });
+    </script>
+</dom-module>

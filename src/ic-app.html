@@ -35,15 +35,38 @@
         --paper-icon-button-ink-color: white;
       }
 
-      .drawer-list a {
+      app-drawer{
+          --app-drawer-width:220px;
+      }
+
+      .drawer-list{      
+        display: flex;
+        flex-direction: column;
+        padding-left:20px;
+      }
+
+      .drawer-link{
+          display:flex;
+          padding:1px 0;
+          background-color:#515151;
+      }
+
+      .drawer-link > div{
+          width:10px;
+          background-color:#515151;
+      }
+
+      .drawer-link a {
         display: block;
         padding: 0 16px;
         text-decoration: none;
         line-height: 40px;
         color: #ffffff;
+        background-color:#434343;
+        width:100%;
       }
 
-      .drawer-list a.iron-selected {
+      .drawer-list .drawer-link.iron-selected > a {
         color: black;
         font-weight: bold;      
         background-color:#d8d8d8;
@@ -114,9 +137,23 @@
         <app-toolbar>
         	<div id="customer-logo"></div>
         </app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">          
-          <a name="dashboard" href="/dashboard">Dashboard</a>
-          <a name="view3" href="/view3">Other Page</a>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">  
+            <div name="dashboard" class="drawer-link">
+                <div>&nbsp;</div>
+                <a href="/dashboard">DASHBOARD</a>
+            </div>     
+            <div name="collections" class="drawer-link">
+                <div>&nbsp;</div>
+                <a href="/dashboard">COLLECTIONS</a>
+            </div> 
+            <div name="archives" class="drawer-link">
+                <div>&nbsp;</div>
+                <a href="/dashboard">ARCHIVES</a>
+            </div> 
+            <div name="trash" class="drawer-link">
+                <div>&nbsp;</div>
+                <a href="/dashboard">TRASH</a>
+            </div> 
         </iron-selector>
       </app-drawer>
 
@@ -183,8 +220,10 @@
             '_routePageChanged(routeData.page)'
           ],
           
-          ready: function(){
-        	  this.logged = window.sessionStorage.getItem('log');  
+          ready: function () {
+              this.async(function () {
+                  this.logged = window.sessionStorage.getItem('log');
+              }.bind(this));
           },
 
           _routePageChanged: function (page) {

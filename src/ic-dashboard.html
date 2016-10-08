@@ -1,34 +1,97 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
 
+<link rel="import" href="ic-indicator.html">
+<link rel="import" href="ic-workspace.html">
+
 <dom-module id="ic-dashboard">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-        height:100%;
-        padding: 10px;
+    <template>
+        <style include="iron-flex iron-flex-alignment shared-styles">
+            :host {
+                display: flex;
+                height: 100%;
+            }
 
-        background:url('../images/dashboard.jpg') no-repeat;
-        background-size:cover;
-      }
-    </style>
+            #board {
+                width: 1380px;
+                height: 99.5%;
+                background-color:white;
+                justify-content: space-between;
+            }
 
-  </template>
+            #drawer {
+                width: 310px;
+                height: 99.5%;
+            }
 
-  <script>
-    Polymer({
-        is: 'ic-dashboard'
-    });
-  </script>
+            #header {
+                border-bottom: 1px solid #cccccc;
+                padding: 0 20px;
+                color: #4a73cf;
+                height: 50px;
+                display: flex;
+                margin: 0 30px;
+                align-items: center;
+            }
+
+            #footer{
+                height: 50px;
+                background-color:#e4e4e4;
+                width:100%;
+            }
+
+            #indicators{
+                display: flex;
+                justify-content: center;
+            }
+
+            #search{
+                width:400px;
+                height:570px;
+                background-image:url('../images/dashboard/search.jpg');
+                background-repeat: no-repeat;
+                background-size:cover;
+            }
+
+            #workspace{
+                justify-content: center;
+            }
+
+            #work-in-progress {
+                width: 820px;
+                height: 570px;
+                margin-right: 20px;
+            }
+
+        </style>
+        <div id="board" class="layout vertical">
+            <div id="header">{{date}}</div>
+            <div id="content">
+                <div id="indicators">
+                    <ic-indicator color="#607d8b" title="ARCHIVED PROJECTS" icon="ic-icons:archive" count="255"></ic-indicator>
+                    <ic-indicator color="#c67063" title="UPCOMING TASK" icon="ic-icons:task" count="21"></ic-indicator>
+                    <ic-indicator color="#818181" title="CREATE A NEW PUB" icon="ic-icons:create" action></ic-indicator>
+                </div>
+                <div id="workspace" class="layout horizontal">
+                    <div id="work-in-progress">
+                        <ic-workspace></ic-workspace>
+                    </div>
+                    <div id="search"></div>
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+        <div id="drawer">t</div>
+    </template>
+    <script>
+        Polymer({
+            is: 'ic-dashboard',
+
+            ready: function () {
+                var date = new Date(Date.now());
+                this.date = date.toDateString();
+            }
+        });
+    </script>
 </dom-module>

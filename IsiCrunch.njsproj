@@ -28,6 +28,9 @@
     <Content Include="src\ic-icons.html" />
     <Content Include="src\ic-home.html" />
     <Content Include="src\ic-dashboard.html" />
+    <Content Include="src\ic-bookwork.html" />
+    <Content Include="src\ic-workspace.html" />
+    <Content Include="src\ic-indicator.html" />
     <Content Include="src\ic-view3.html" />
     <Content Include="src\ic-view404.html" />
     <Content Include="src\shared-styles.html" />
@@ -761,6 +764,7 @@
     <Folder Include="bower_components\web-component-tester\data" />
     <Folder Include="images" />
     <Folder Include="images\manifest" />
+    <Folder Include="images\dashboard\" />
     <Folder Include="src" />
     <Folder Include="test" />
   </ItemGroup>

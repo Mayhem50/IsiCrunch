@@ -1,0 +1,72 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="ic-bookwork">
+    <template>
+        <style include="iron-flex iron-flex-alignment shared-styles">
+            :host {
+                display: block;
+                width:290px;
+                margin: 10px;
+                background-color: white;
+            }
+
+            #header{                
+                justify-content:space-arround;
+            }
+
+            #header div{
+                color: #999999;
+                font-size:12px;
+                margin:0 2px;
+            }
+            
+            #header span{
+                color: #343434;
+                font-size:12px;
+                margin: 0 3px;
+            }
+
+            #content{
+                background-color: white;
+            }
+
+            #picture{
+                width:264px;
+                height:264px;
+            }
+        </style>
+
+        <div id="content" class="layout vertical">
+            <div id="header" class="layout horizontal">
+                <div>EAN:<span>{{book.EAN}}</span></div>
+                <div>ISBN:<span>{{book.ISBN}}</span></div>
+            </div>
+            <div id="picture"></div>
+            <div id="infos" class="layout vertical">
+                <div>Title:<span>{{book.title}}</span></div>
+                <div>Author:<span>{{book.author}}</span></div>
+                <div>Publisher:<span>{{book.publisher}}</span></div>
+                <div>Creation:<span>{{book.created}}</span></div>
+                <div>Last update:<span>{{book.updated}}</span></div>
+            </div>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'ic-bookwork',
+
+            properties: {
+                book: {
+                    type: Object
+                }
+            },
+
+            ready: function () {
+
+            }
+        });
+    </script>
+</dom-module>
