@@ -1,0 +1,2 @@
+X:\GitPerso\IsiCrunch\obj\Debug\IsiCrunch.njsprojResolveAssemblyReference.cache
+X:\GitPerso\IsiCrunch\bin\Microsoft.NodejsTools.WebRole.dll

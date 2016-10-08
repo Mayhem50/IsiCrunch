@@ -64,7 +64,7 @@
             }
             
             #logpart{
-                background-image:url('../images/home/content.jpg');    
+                background-image:url('../images/home/content.png');    
                 background-repeat: no-repeat;
                 background-size: cover; 
                 width: 100%;   	
@@ -74,11 +74,40 @@
             }
             
             #middle{
-            	background-image:url('../images/home/middlepart.jpg');    
-                background-repeat: no-repeat;
-                background-size: cover; 
             	flex-grow: 3;
             	width: 100%;
+                background-color:white;
+            }
+
+            .middle-box{
+                width:600px;
+                display:flex;
+                padding:20px;
+                align-items: center;
+            }
+
+            .middle-svg{
+                width: 165px;
+                margin: 0 20px;
+            }
+
+            .illustration{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+            }
+
+            .illustration-title{
+                color:#ef6751;
+                font-weight:bold;
+                font-size:xx-large;
+                margin-bottom: 25px;
+            }
+
+            .illustration-text{
+                color:#848484;
+                font-size:small;
             }
             
             #footer{
@@ -91,13 +120,35 @@
         </style>
 
 		<div id="content" class="layout vertical">
-			<div id="logpart" class="layout vertical justified-center">
+			<div id="logpart" class="layout vertical center-justified">
 		        <paper-input no-label-float always-float-label="false" value="{{username}}"></paper-input>
 		        <paper-input id="input" no-label-float always-float-label="false" value="{{password}}" type="password"></paper-input>
 		
 		        <paper-button on-tap="signIn">> Log on</paper-button> 
 	        </div>
-	        <div id="middle"></div> 
+	        <div id="middle" class="layout horizontal center-justified">
+                <div id="upload" class="middle-box">
+                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/upload.svg" />
+                    <div class="illustration">
+                        <div class="illustration-title">1/ Upload</div>
+                        <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    </div>
+                </div>
+                <div id="edit" class="middle-box">
+                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/edit.svg" />
+                    <div class="illustration">
+                        <div class="illustration-title">2/ Edit</div>
+                        <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    </div>
+                </div>
+                <div id="share" class="middle-box">
+                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/share.svg" />
+                    <div class="illustration">
+                        <div class="illustration-title">3/ Share</div>
+                        <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    </div>
+                </div>
+            </div> 
         </div>      
 
         <div id="footer">&nbsp</div>

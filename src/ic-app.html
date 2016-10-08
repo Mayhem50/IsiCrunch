@@ -88,7 +88,17 @@
 		background-color: #ffffff;
 		color: #ef6751;		
       }
-      
+
+      #isi-logo{
+          width:95px;
+          height:64px;
+      }
+
+      #links{          
+        display: flex;
+        align-items: center;
+      }
+            
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -118,7 +128,7 @@
             
             	<!-- Home region -->
             	<div id="home-toolbar" class="layout horizontal justified">
-	                <div main-title>ISI Crunch</div>
+                    <embed id="isi-logo" type="image/svg+xml" src="../images/home/logo_header.svg" />
 	                <iron-selector id="links" selected="2">
 	                	<paper-button><a href="http://www.isicrunch.com">Company</a></paper-button>
 	                	<paper-button><a>Product</a></paper-button>
