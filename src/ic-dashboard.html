@@ -16,7 +16,7 @@
             #board {
                 width: 1380px;
                 height: 99.5%;
-                background-color:white;
+                background-color: white;
                 justify-content: space-between;
             }
 
@@ -35,26 +35,26 @@
                 align-items: center;
             }
 
-            #footer{
+            #footer {
                 height: 50px;
-                background-color:#e4e4e4;
-                width:100%;
+                background-color: #e4e4e4;
+                width: 100%;
             }
 
-            #indicators{
+            #indicators {
                 display: flex;
                 justify-content: center;
             }
 
-            #search{
-                width:400px;
-                height:570px;
-                background-image:url('../images/dashboard/search.jpg');
+            #search {
+                width: 400px;
+                height: 570px;
+                background-image: url('../images/dashboard/search.jpg');
                 background-repeat: no-repeat;
-                background-size:cover;
+                background-size: cover;
             }
 
-            #workspace{
+            #workspace {
                 justify-content: center;
             }
 
@@ -64,6 +64,11 @@
                 margin-right: 20px;
             }
 
+            #drawer{
+                background-image: url('../images/drawerRight/dashboard.jpg');
+                background-size: contain;
+                background-repeat:no-repeat;
+            }
         </style>
         <div id="board" class="layout vertical">
             <div id="header">{{date}}</div>
@@ -75,14 +80,14 @@
                 </div>
                 <div id="workspace" class="layout horizontal">
                     <div id="work-in-progress">
-                        <ic-workspace></ic-workspace>
+                        <ic-workspace on-show-book="showBook"></ic-workspace>
                     </div>
                     <div id="search"></div>
                 </div>
             </div>
             <div id="footer"></div>
         </div>
-        <div id="drawer">t</div>
+        <div id="drawer"></div>
     </template>
     <script>
         Polymer({
@@ -91,6 +96,10 @@
             ready: function () {
                 var date = new Date(Date.now());
                 this.date = date.toDateString();
+            },
+
+            showBook: function (e) {
+                this.fire('show-book', { book: e.detail.book });
             }
         });
     </script>

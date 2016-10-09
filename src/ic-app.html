@@ -9,18 +9,17 @@
 <link rel="import" href="../bower_components/app-route/app-route.html">
 
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="ic-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="ic-app">
-  <template>
-    <style is="custom-style" include="iron-flex iron-flex-alignment shared-styles">
-      :host {
+    <template>
+        <style is="custom-style" include="iron-flex iron-flex-alignment shared-styles">
+            :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
 
@@ -39,10 +38,14 @@
           --app-drawer-width:220px;
       }
 
+      paper-button{
+          text-transform:none;
+      }
+
       .drawer-list{      
         display: flex;
         flex-direction: column;
-        padding-left:20px;
+        padding-left:5px;
       }
 
       .drawer-link{
@@ -51,11 +54,15 @@
           background-color:#515151;
       }
 
-      .drawer-link > div{
+      .link-content{          
+          width: 173px;
+      }
+
+      .drawer-link .dummy{
           width:10px;
           background-color:#515151;
       }
-
+      
       .drawer-link a {
         display: block;
         padding: 0 16px;
@@ -66,7 +73,7 @@
         width:100%;
       }
 
-      .drawer-list .drawer-link.iron-selected > a {
+      .drawer-list .drawer-link.iron-selected a {
         color: black;
         font-weight: bold;      
         background-color:#d8d8d8;
@@ -121,162 +128,310 @@
         display: flex;
         align-items: center;
       }
-            
-    </style>
 
-    <app-location route="{{route}}"></app-location>
-    <app-route
-        route="{{route}}"
-        pattern="/:page"
-        data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
+      #logo-v2{
+          width:181px;
+          height: 27px;
+          background-image: url('../images/dashboard/logo.png')
+      }
 
-    <app-drawer-layout id="layout" fullbleed narrow>
-      <!-- Drawer content -->
-      <app-drawer id="drawer" >
-        <app-toolbar>
-        	<div id="customer-logo"></div>
-        </app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">  
-            <div name="dashboard" class="drawer-link">
-                <div>&nbsp;</div>
-                <a href="/dashboard">DASHBOARD</a>
-            </div>     
-            <div name="collections" class="drawer-link">
-                <div>&nbsp;</div>
-                <a href="/dashboard">COLLECTIONS</a>
-            </div> 
-            <div name="archives" class="drawer-link">
-                <div>&nbsp;</div>
-                <a href="/dashboard">ARCHIVES</a>
-            </div> 
-            <div name="trash" class="drawer-link">
-                <div>&nbsp;</div>
-                <a href="/dashboard">TRASH</a>
-            </div> 
-        </iron-selector>
-      </app-drawer>
+      #end-toolbar{
+          color:#666666;
+          align-items: baseline;
+      }
 
-      <!-- Main content -->
-      <app-header-layout fullbleed>
+      #end-toolbar:hover{
+          color:#ffffff;
+      }
 
-        <app-header condenses reveals effects="waterfall">
-            <app-toolbar id="toolbar">
-            
-            	<!-- Home region -->
-            	<div id="home-toolbar" class="layout horizontal justified">
-                    <embed id="isi-logo" type="image/svg+xml" src="../images/home/logo_header.svg" />
-	                <iron-selector id="links" selected="2">
-	                	<paper-button><a href="http://www.isicrunch.com">Company</a></paper-button>
-	                	<paper-button><a>Product</a></paper-button>
-	                	<paper-button><a>ISICrunch Access</a></paper-button>
-	                	<paper-button><a href="http://www.isicrunch.com/en/contact/index.php">Contact</a></paper-button>
-	                	<paper-button><a>Support</a></paper-button>
-                	</iron-selector>
+      #webapp-toolbar{
+          width:95%;
+          justify-content:space-between;
+      }
+
+      #arian-wire{
+        margin-left: 150px;
+        align-items: center;
+        width: 410px;
+        height: 64px;
+        justify-content: space-around;
+        cursor:default;
+      }
+
+      #arian-wire span{
+        font-size:15px;
+      }
+
+      #arian-wire iron-icon{
+          width:20px;
+          height: 20px;
+      }
+
+      .arian-wire{
+          color: #666666;
+      }      
+
+      .arian-wire[selected]{
+          color: #ffffff;
+      }
+
+      #customer-logo{
+          background-image: url('../images/dashboard/Logo-Hatier.png');
+          background-repeat:no-repeat;
+          background-size:contain;
+          width: 100%;
+          height: 55px;
+      }
+
+      #fakeDrawer{
+          width:205px;
+          height: 615px;
+      }
+
+        </style>
+
+        <app-location route="{{route}}"></app-location>
+        <app-route route="{{route}}"
+                   pattern="/:page"
+                   data="{{routeData}}"
+                   tail="{{subroute}}"></app-route>
+
+        <app-drawer-layout id="layout" fullbleed narrow>
+            <!-- Drawer content -->
+            <app-drawer id="drawer">
+                <app-toolbar>
+                    <div id="customer-logo"></div>
+                </app-toolbar>
+                <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                    <div name="dashboard" class="drawer-link">
+                        <div class="dummy">&nbsp;</div>
+                        <div class="layout vertical link-content">
+                            <a href="/dashboard">DASHBOARD</a>
+                        </div>
+                    </div>
+                    <div name="catalogue" class="drawer-link" on-tap="toggleDrawer">
+                        <div class="dummy">&nbsp;</div>
+                        <div class="layout vertical link-content">
+                            <a href="/catalogue">COLLECTION</a>
+                            <iron-collapse id="fakeDrawerCollapse">
+                                <div id="fakeDrawer"></div>
+                            </iron-collapse>
+                        </div>
+                    </div>
+                    <div name="archives" class="drawer-link">
+                        <div class="dummy">&nbsp;</div>
+                        <div class="layout vertical link-content">
+                            <a href="/dashboard">ARCHIVES</a>
+                        </div>
+                    </div>
+                    <div name="trash" class="drawer-link">
+                        <div class="dummy">&nbsp;</div>
+                        <div class="layout vertical link-content">
+                            <a href="/dashboard">TRASH</a>
+                        </div>
+                    </div>
+                </iron-selector>
+            </app-drawer>
+
+            <!-- Main content -->
+            <app-header-layout fullbleed>
+
+                <app-header condenses reveals effects="waterfall">
+                    <app-toolbar id="toolbar">
+
+                        <!-- Home region -->
+                        <div id="home-toolbar" class="layout horizontal justified">
+                            <embed id="isi-logo" type="image/svg+xml" src="../images/home/logo_header.svg" />
+                            <iron-selector id="links" selected="2">
+                                <paper-button><a href="http://www.isicrunch.com">Company</a></paper-button>
+                                <paper-button><a>Product</a></paper-button>
+                                <paper-button><a>ISICrunch Access</a></paper-button>
+                                <paper-button><a href="http://www.isicrunch.com/en/contact/index.php">Contact</a></paper-button>
+                                <paper-button><a>Support</a></paper-button>
+                            </iron-selector>
+                        </div>
+
+                        <!-- WebApp region -->
+                        <div id="webapp-toolbar" class="layout horizontal">
+                            <div id="arian-wire" class="layout horizontal">
+                                <div id="ariane-home" selected$="{{homeSelected}}" class="arian-wire">
+                                    <iron-icon icon="ic-icons:home"></iron-icon>
+                                    <span>Home</span>
+                                </div>
+                                <div id="ariane-edition" selected$="{{editionSelected}}" class="arian-wire">
+                                    <iron-icon icon="ic-icons:edit" ></iron-icon>
+                                    <span>Edition</span>
+                                </div>
+                                <div id="ariane-admin" class="arian-wire">
+                                    <iron-icon icon="ic-icons:admin"></iron-icon>
+                                    <span>Admin</span>
+                                </div>
+                                <div id="ariane-help" class="arian-wire">
+                                    <iron-icon icon="ic-icons:help"></iron-icon>
+                                    <span>Help</span>
+                                </div>
+                            </div>
+                            <div id="end-toolbar" class="layout horizontal">
+                                <div id="logo-v2"></div>
+                                <paper-button on-tap="signOut"><iron-icon icon="ic-icons:quit"></iron-icon>&nbsp;Quit</paper-button>
+                            </div>
+                        </div>
+                    </app-toolbar>
+                </app-header>
+
+                <div id="content">
+                    <iron-pages id="pages-content" selected="[[page]]"
+                                attr-for-selected="name"
+                                fallback-selection="view404"
+                                role="main">
+                        <ic-home name="home" logged="{{logged}}"></ic-home>
+                        <ic-dashboard name="dashboard" on-show-book="showBook"></ic-dashboard>
+                        <ic-catalogue name="catalogue" book="{{book}}" on-goto-nav="gotoNav"></ic-catalogue>
+                        <ic-navigation name="navigation" book="{{book}}"></ic-navigation>
+                        <my-view404 name="view404"></my-view404>
+                    </iron-pages>
                 </div>
-                
-                <!-- WebApp region -->
-            	<div id="webapp-toolbar">
-	                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-	                <div>ISI Crunchy</div>
-                </div>
-            </app-toolbar>
-        </app-header>
+            </app-header-layout>
+        </app-drawer-layout>
+    </template>
 
-          <div id="content">
-              <iron-pages id="pages-content" selected="[[page]]"
-                          attr-for-selected="name"
-                          fallback-selection="view404"
-                          role="main">
-                  <ic-home name="home" logged="{{logged}}"></ic-home>
-                  <ic-dashboard name="dashboard"></ic-dashboard>
-                  <my-view3 name="view3"></my-view3>
-                  <my-view404 name="view404"></my-view404>
-              </iron-pages>
-          </div>
-      </app-header-layout>
-    </app-drawer-layout>
-  </template>
+    <script>
+        Polymer({
+            is: 'ic-app',
 
-  <script>
-      Polymer({
-          is: 'ic-app',
+            properties: {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged'
+                },
 
-          properties: {
-              page: {
-                  type: String,
-                  reflectToAttribute: true,
-                  observer: '_pageChanged'
-              },
+                logged: {
+                    type: Boolean,
+                    value: false,
+                    observer: '_loggedChanged'
+                },
 
-              logged: {
-                  type: Boolean,
-                  value: false,
-                  observer: '_loggedChanged'
-              }
-          },
+                book : Object
+            },
 
-          observers: [
-            '_routePageChanged(routeData.page)'
-          ],
-          
-          ready: function () {
-              this.async(function () {
-                  this.logged = window.sessionStorage.getItem('log');
-              }.bind(this));
-          },
+            observers: [
+              '_routePageChanged(routeData.page)'
+            ],
 
-          _routePageChanged: function (page) {
-        	  
-              this.page = page || 'home';              
-          },
+            ready: function () {
+                this.async(function () {
+                    this.logged = window.sessionStorage.getItem('log');
+                }.bind(this));
 
-          _pageChanged: function (page) {
-              var resolvedPageUrl = this.resolveUrl('ic-' + page + '.html');
-              this.importHref(resolvedPageUrl, null, this._showPage404, true);
-          },
+                this.ariane = 'home';
+            },
 
-          _loggedChanged: function (e) {
-              this.$.drawer.hidden = !this.logged;
-              this.$.layout.resetLayout();
+            _routePageChanged: function (page) {
+                if (page == 'dashboard') {
+                    this.homeSelected = true;
+                    this.editionSelected = false;
+                    this.$.fakeDrawerCollapse.hide();
+                }
+                else if (page == 'catalogue') {
+                    if (this.book) {
+                        this.homeSelected = false;
+                        this.editionSelected = true;
+                        this.$.fakeDrawerCollapse.show();
+                    }
+                    else { return;}
+                }
 
-              if (this.logged) {
-                  this.set('routeData.page', 'dashboard');
-                  window.sessionStorage.setItem('log', true);
-              }
-              else {
-                  this.set('routeData.page', '');
-              }
+                if (!this.logged) {
+                    this.page = page || 'home';
+                }
 
-              this._setToolbar();
-          },
+                else {
+                    this.page = page || 'dashboard';
+                }
+            },
 
-          _setToolbar: function () {
-              if (this.logged) {
-                  this.$.toolbar.classList.remove('default-toolbar');
-                  this.$.toolbar.classList.add('logged-toolbar');
+            _pageChanged: function (page) {
+                var resolvedPageUrl = this.resolveUrl('ic-' + page + '.html');
+                this.importHref(resolvedPageUrl, null, this._showPage404, true);
+            },
 
-                  this.$$('#home-toolbar').classList.add('hidden');
-                  this.$$('#home-toolbar').classList.remove('visible');
-                  
-                  this.$$('#webapp-toolbar').classList.add('visible');
-                  this.$$('#webapp-toolbar').classList.remove('hidden');
-              }
-              else {
-                  this.$.toolbar.classList.remove('logged-toolbar');
-                  this.$.toolbar.classList.add('default-toolbar');
-                  
-                  this.$$('#home-toolbar').classList.add('visible');
-                  this.$$('#home-toolbar').classList.remove('hidden');
+            _loggedChanged: function (e) {
 
-                  this.$$('#webapp-toolbar').classList.add('hidden');
-                  this.$$('#webapp-toolbar').classList.remove('visible');
-              }
-          },
+                if (!this.logged) {
+                    this.$.drawer.close();
 
-          _showPage404: function () {
-              this.page = 'view404';
-          }
-      });
-  </script>
+                    this.$.drawer.classList.add('hidden');
+                    this.$.drawer.classList.remove('visible')
+                }
+                else {
+                    this.$.drawer.open();
+
+                    this.$.drawer.classList.add('visible');
+                    this.$.drawer.classList.remove('hidden')
+                }
+
+                this.$.layout.resetLayout();
+
+                if (this.logged) {
+                    this.set('routeData.page', 'dashboard');
+                    window.sessionStorage.setItem('log', true);
+                }
+                else {
+                    this.set('routeData.page', '');
+                }
+
+                this._setToolbar();
+            },
+
+            _setToolbar: function () {
+                if (this.logged) {
+                    this.$.toolbar.classList.remove('default-toolbar');
+                    this.$.toolbar.classList.add('logged-toolbar');
+
+                    this.$$('#home-toolbar').classList.add('hidden');
+                    this.$$('#home-toolbar').classList.remove('visible');
+
+                    this.$$('#webapp-toolbar').classList.add('visible');
+                    this.$$('#webapp-toolbar').classList.remove('hidden');
+                }
+                else {
+                    this.$.toolbar.classList.remove('logged-toolbar');
+                    this.$.toolbar.classList.add('default-toolbar');
+
+                    this.$$('#home-toolbar').classList.add('visible');
+                    this.$$('#home-toolbar').classList.remove('hidden');
+
+                    this.$$('#webapp-toolbar').classList.add('hidden');
+                    this.$$('#webapp-toolbar').classList.remove('visible');
+                }
+            },
+
+            signOut:function(){
+                this.logged = false;
+                window.sessionStorage.removeItem('log');
+            },
+
+            _showPage404: function () {
+                this.page = 'view404';
+            },
+
+            showBook: function (e) {
+                this.book = e.detail.book;
+                this.set('routeData.page', 'catalogue');
+
+                this.$.fakeDrawer.style.backgroundImage = 'url("../images/drawer/' + this.book.fakeDrawer + '")';
+            },
+
+            toggleDrawer: function () {
+                if (this.book) {
+                    this.$.fakeDrawerCollapse.toggle();
+                }
+            },
+
+            gotoNav: function () {
+                this.set('routeData.page', 'navigation');
+            }
+        });
+    </script>
 </dom-module>

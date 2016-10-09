@@ -27,13 +27,13 @@
                 background-color: #cdcdcd;
                 padding: 10px 0;
                 height:100%;
-            }
+            } 
         </style>
 
         <div id="header">Work in progress</div>
         <div id="content" class="layout horizontal">
                 <template is="dom-repeat" items="[[books]]">
-                    <ic-bookwork book="[[item]]"></ic-bookwork>
+                    <ic-bookwork book="[[item]]" on-tap="showBook"></ic-bookwork>
                 </template>
         </div>
 
@@ -55,7 +55,10 @@
                             publisher: 'Homemaid publisher',
                             created: '11/30/2011',
                             updated: '11/30/2011',
-                            picture: ''
+                            picture: 'Datasheet-01.png',
+                            fakeNavigation: '01.jpg',
+                            fakeDrawer: '01.jpg',
+                            fakeRightDrawer: '01.jpg'
                         },
                         {
                             EAN: '426-0-048-81270-6',
@@ -65,7 +68,10 @@
                             publisher: 'Unknown',
                             created: '11/30/2011',
                             updated: '11/30/2011',
-                            picture: ''
+                            picture: 'Datasheet-02.png',
+                            fakeNavigation: '01.jpg',
+                            fakeDrawer: '01.jpg',
+                            fakeRightDrawer: '01.jpg'
                         },
                         {
                             EAN: '400-0-000-49820-9',
@@ -75,7 +81,10 @@
                             publisher: 'Unknown',
                             created: '11/30/2011',
                             updated: '11/30/2011',
-                            picture: ''
+                            picture: 'Datasheet-01.png',
+                            fakeNavigation: '01.jpg',
+                            fakeDrawer: '01.jpg',
+                            fakeRightDrawer: '01.jpg'
                         },
                         {
                             EAN: '082-4-27402495-7',
@@ -85,7 +94,10 @@
                             publisher: 'Unknown',
                             created: '11/30/2011',
                             updated: '11/30/2011',
-                            picture: ''
+                            picture: 'Datasheet-01.png',
+                            fakeNavigation: '01.jpg',
+                            fakeDrawer: '01.jpg',
+                            fakeRightDrawer: '01.jpg'
                         }
                         ];
                     }
@@ -94,6 +106,10 @@
 
             ready: function () {
 
+            },
+
+            showBook: function (e) {
+                this.fire('show-book', { book: e.model.item });
             }
         });
     </script>

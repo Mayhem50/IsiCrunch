@@ -5,55 +5,68 @@
 
 <!-- shared styles for all views -->
 <dom-module id="shared-styles">
-  <template>
-    <style>
-      .card {
-        margin: 24px;
-        padding: 16px;
+    <template>
+        <style>
+            .card {
+                margin: 24px;
+                padding: 16px;
+                color: #757575;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
 
-        color: #757575;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-      }
-      
-      .hidden{
-      	visibility: hidden;
-      	display: none !important;
-      }
-      
-      .visible{
-      	visibility: visible;
-      	display: block;
-      }
+            ::-webkit-scrollbar {
+                height: 10px;
+            }
 
-      .circle {
-        display: inline-block;
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+                border-radius: 10px;
+            }
 
-        width: 64px;
-        height: 64px;
+            ::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+                width:5px;
+                background-color:#999999;
+            }
 
-        text-align: center;
+            ::-webkit-scrollbar-track-piece{
+                background-color: #666666;
+            }
 
-        color: #555;
-        border-radius: 50%;
-        background: #ddd;
+            .hidden {
+                visibility: hidden;
+                display: none !important;
+            }
 
-        font-size: 30px;
-        line-height: 64px;
-      }
+            .visible {
+                visibility: visible;
+                display: block;
+            }
 
-      h1 {
-        margin: 16px 0;
+            .circle {
+                display: inline-block;
+                width: 64px;
+                height: 64px;
+                text-align: center;
+                color: #555;
+                border-radius: 50%;
+                background: #ddd;
+                font-size: 30px;
+                line-height: 64px;
+            }
 
-        color: #212121;
+            h1 {
+                margin: 16px 0;
+                color: #212121;
+                font-size: 22px;
+            }
 
-        font-size: 22px;
-      }
-      
-      a, a:link, a:visited, a:focus, a:hover, a:active {
-      	text-decoration: none;
-      }
-    </style>
-  </template>
+            a, a:link, a:visited, a:focus, a:hover, a:active {
+                text-decoration: none;
+            }
+        </style>
+    </template>
 </dom-module>

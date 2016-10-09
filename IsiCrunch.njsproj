@@ -16,6 +16,32 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="images\books\Datasheet-01.png" />
+    <Content Include="images\books\Datasheet-02.png" />
+    <Content Include="images\catalogue\column2.jpg" />
+    <Content Include="images\dashboard.jpg" />
+    <Content Include="images\dashboard\Logo-Hatier.png" />
+    <Content Include="images\dashboard\logo.png" />
+    <Content Include="images\dashboard\search.jpg" />
+    <Content Include="images\drawerRight\dashboard.jpg" />
+    <Content Include="images\drawer\01.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\home.png" />
+    <Content Include="images\home\content.png" />
+    <Content Include="images\home\edit.svg" />
+    <Content Include="images\home\footer.jpg" />
+    <Content Include="images\home\ISIcrunch  logo.png" />
+    <Content Include="images\home\logo_baseline.svg" />
+    <Content Include="images\home\logo_header.svg" />
+    <Content Include="images\home\share.svg" />
+    <Content Include="images\home\upload.svg" />
+    <Content Include="images\manifest\icon-144x144.png" />
+    <Content Include="images\manifest\icon-192x192.png" />
+    <Content Include="images\manifest\icon-48x48.png" />
+    <Content Include="images\manifest\icon-512x512.png" />
+    <Content Include="images\manifest\icon-72x72.png" />
+    <Content Include="images\manifest\icon-96x96.png" />
+    <Content Include="images\navigation\01.jpg" />
     <Content Include="index.html" />
     <Content Include="bower.json" />
     <Content Include="manifest.json" />
@@ -23,15 +49,16 @@
     <Content Include="README.md" />
     <Compile Include="service-worker.js" />
     <Compile Include="sw-precache-config.js" />
-    <Content Include="images\favicon.ico" />
     <Content Include="src\ic-app.html" />
+    <Content Include="src\ic-action-card.html" />
+    <Content Include="src\ic-navigation.html" />
+    <Content Include="src\ic-catalogue.html" />
     <Content Include="src\ic-icons.html" />
     <Content Include="src\ic-home.html" />
     <Content Include="src\ic-dashboard.html" />
     <Content Include="src\ic-bookwork.html" />
     <Content Include="src\ic-workspace.html" />
     <Content Include="src\ic-indicator.html" />
-    <Content Include="src\ic-view3.html" />
     <Content Include="src\ic-view404.html" />
     <Content Include="src\shared-styles.html" />
     <Content Include="test\index.html" />
@@ -606,12 +633,6 @@
     <Content Include="bower_components\test-fixture\test\test-fixture.html" />
     <Content Include="bower_components\web-component-tester\data\index.html" />
     <Compile Include="bower_components\web-component-tester\data\a11ySuite.js" />
-    <Content Include="images\manifest\icon-144x144.png" />
-    <Content Include="images\manifest\icon-192x192.png" />
-    <Content Include="images\manifest\icon-48x48.png" />
-    <Content Include="images\manifest\icon-512x512.png" />
-    <Content Include="images\manifest\icon-72x72.png" />
-    <Content Include="images\manifest\icon-96x96.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bower_components" />
@@ -762,9 +783,15 @@
     <Folder Include="bower_components\webcomponentsjs" />
     <Folder Include="bower_components\web-component-tester" />
     <Folder Include="bower_components\web-component-tester\data" />
-    <Folder Include="images" />
-    <Folder Include="images\manifest" />
+    <Folder Include="images\" />
+    <Folder Include="images\books\" />
+    <Folder Include="images\catalogue\" />
     <Folder Include="images\dashboard\" />
+    <Folder Include="images\drawerRight\" />
+    <Folder Include="images\drawer\" />
+    <Folder Include="images\home\" />
+    <Folder Include="images\manifest\" />
+    <Folder Include="images\navigation\" />
     <Folder Include="src" />
     <Folder Include="test" />
   </ItemGroup>

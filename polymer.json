@@ -2,9 +2,9 @@
   "entrypoint": "index.html",
   "shell": "src/ic-app.html",
   "fragments": [
-    "src/ic-view1.html",
-    "src/ic-view2.html",
-    "src/ic-view3.html",
+    "src/ic-dashboard.html",
+    "src/ic-home.html",
+    "src/ic-catalogue.html",
     "src/ic-view404.html"
   ],
   "sourceGlobs": [

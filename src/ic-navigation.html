@@ -1,0 +1,42 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<link rel="import" href="ic-action-card.html">
+
+<dom-module id="ic-navigation">
+    <template>
+        <style include="iron-flex iron-flex-alignment shared-styles">
+            :host {
+                display: flex;
+                height: 100%;
+            }
+
+            #board {
+                width: 100%;
+                height: 99.5%;
+                background-size:contain;
+                background-repeat:no-repeat;
+            }
+        </style>
+        <div id="board" >
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: 'ic-navigation',
+
+            properties: {
+                book: {
+                    type: Object,
+                    observer: '_bookChanged'
+                }
+            },
+
+            _bookChanged: function (e) {
+                this.$.board.style.backgroundImage = 'url("../images/navigation/' + this.book.fakeNavigation + '")';
+            }
+
+        });
+    </script>
+</dom-module>
