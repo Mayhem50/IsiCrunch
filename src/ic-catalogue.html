@@ -1,5 +1,8 @@
-
 <link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-icons/image-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
 <link rel="import" href="shared-styles.html">
 
 <link rel="import" href="ic-action-card.html">
@@ -27,7 +30,7 @@
             #firstHeader {
                 background-color: #d8d8d8;
                 padding: 0 50px;
-                height: 50px;
+                height: 53px;
                 display: flex;
                 align-items: center;
                 color: white;
@@ -95,7 +98,7 @@
             #fake{                
                 height: 625px;
                 margin-top: 18px;
-                background-image: url(http://192.168.11.136:8080/images/catalogue/column2.jpg);
+                background-image: url(../images/catalogue/column2.jpg);
                 background-size: contain;
                 background-repeat: no-repeat;
             }
@@ -112,6 +115,11 @@
                 border-radius: 5px;
                 text-transform:none;
                 color:#808080;
+            }
+
+            paper-button:hover{
+                background-color:#808080;
+                color:white;
             }
         </style>
         <div id="board" class="layout vertical">
@@ -136,15 +144,15 @@
                 <div id="column2" class="layout vertical">
                     <div id="fake"></div>
                     <div class="layout horizontal action">
-                        <paper-button><iron-icon icon="ic-icons:book-open"></iron-icon>&nbsp;Browse PDF</paper-button>
-                        <paper-button><iron-icon icon="ic-icons:book-open"></iron-icon>&nbsp;Browse PDF</paper-button>
+                        <paper-button><iron-icon icon="icons:note-add"></iron-icon>&nbsp;Create TOC Assets</paper-button>
+                        <paper-button><iron-icon icon="image:remove-red-eye"></iron-icon>&nbsp;See TOC Assets</paper-button>
                     </div>
                 </div>
                 <div id="column3" class="layout vertical">
-                    <ic-action-card color="#c67063" icon="ic-icons:book-open" title="METADATA" text="Edit Metadata" on-fire-event="gotoNav"></ic-action-card>
-                    <ic-action-card color="#607d8b" icon="ic-icons:book-open" title="EPUB PREMIUM" text="Prepare ePub" on-fire-event="gotoNav"></ic-action-card>
-                    <ic-action-card color="#618b89" icon="ic-icons:book-open" title="EPUB ADMIN" text="Prepare ePub" on-fire-event="gotoNav"></ic-action-card>
-                    <ic-action-card color="#8b7d97" icon="ic-icons:book-open" title="EPUB INTERACTIVE" text="Add Interactivity" on-fire-event="gotoNav"></ic-action-card>
+                    <ic-action-card color="#c67063" icon="ic-icons:metadata" title="METADATA" text="Edit Metadata" on-fire-event="gotoNav"></ic-action-card>
+                    <ic-action-card color="#607d8b" icon="ic-icons:premium" title="EPUB PREMIUM" text="Prepare ePub" on-fire-event="gotoNav"></ic-action-card>
+                    <ic-action-card color="#618b89" icon="ic-icons:admin" title="EPUB ADMIN" text="Prepare ePub" on-fire-event="gotoNav"></ic-action-card>
+                    <ic-action-card color="#8b7d97" icon="ic-icons:interactive" title="EPUB INTERACTIVE" text="Add Interactivity" on-fire-event="gotoNav"></ic-action-card>
                 </div>
             </div>
             <div id="footer"></div>
@@ -162,14 +170,13 @@
                 }
             },
 
-            ready: function () {
-            },
+            ready: function() {},
 
-            _bookChanged: function (e) {
+            _bookChanged: function(e) {
                 this.$.picture.style.backgroundImage = 'url("../images/books/' + this.book.picture + '")';
             },
 
-            gotoNav: function(){
+            gotoNav: function() {
                 this.fire('goto-nav');
             }
         });

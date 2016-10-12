@@ -4,6 +4,8 @@
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+
 <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
 
 <link rel="import" href="shared-styles.html">
@@ -73,10 +75,13 @@
 			    justify-content: center;
 			    align-items: center;
             }
+            
+            
 
-            .content-svg{
+            #logpart iron-icon{
                 width: 265px;
-                margin: 0 20px;
+                height: 265px;
+                color: white;
             }
             
             #middle{
@@ -86,15 +91,15 @@
             }
 
             .middle-box{
-                width:600px;
+                width:575px;
                 display:flex;
-                padding:20px;
                 align-items: center;
             }
 
-            .middle-svg{
-                width: 165px;
-                margin: 0 20px;
+            .middle-box > iron-icon{
+            	min-width: 200px;
+            	height: 165px;
+            	color:#ef6751;
             }
 
             .illustration{
@@ -127,7 +132,7 @@
 
 		<div id="content" class="layout vertical">
 			<div id="logpart" class="layout vertical center-justified">
-                <embed class="content-svg" type="image/svg+xml" src="/images/home/logo_baseline.svg" />
+                <iron-icon icon="ic-texts:baseline"></iron-icon>
 		        <paper-input no-label-float always-float-label="false" value="{{username}}"></paper-input>
 		        <paper-input id="input" no-label-float always-float-label="false" value="{{password}}" type="password"></paper-input>
 		
@@ -135,21 +140,21 @@
 	        </div>
 	        <div id="middle" class="layout horizontal center-justified">
                 <div id="upload" class="middle-box">
-                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/upload.svg" />
+                    <iron-icon icon="ic-icons:upload-circle"></iron-icon>
                     <div class="illustration">
                         <div class="illustration-title">1/ Upload</div>
                         <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                     </div>
                 </div>
                 <div id="edit" class="middle-box">
-                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/edit.svg" />
+                    <iron-icon icon="ic-icons:edit-circle"></iron-icon>
                     <div class="illustration">
                         <div class="illustration-title">2/ Edit</div>
                         <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                     </div>
                 </div>
                 <div id="share" class="middle-box">
-                    <embed class="middle-svg" type="image/svg+xml" src="../images/home/share.svg" />
+                    <iron-icon icon="ic-icons:share-circle"></iron-icon>
                     <div class="illustration">
                         <div class="illustration-title">3/ Share</div>
                         <div class="illustration-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>

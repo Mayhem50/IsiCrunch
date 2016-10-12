@@ -8,51 +8,55 @@
 <link rel="import" href="shared-styles.html">
 <dom-module id="ic-action-card">
     <template>
-        <style include="iron-flex iron-flex-alignment shared-styles">
-            :host {
-                display: block;
-                width: 255px;
-                height: 140px;
-            }
+		<style include="iron-flex iron-flex-alignment shared-styles">
+			:host {
+				display: block;
+				width: 255px;
+				height: 140px;
+			}
+			
+			#card {
+				height: 100%;
+			}
+			
+			#title {
+				color: rgba(255, 255, 255, 0.61);
+				margin: 12px;
+				font-size: 17px;
+				display: flex;
+				align-items: center;
+			}
+			
+			#title iron-icon {
+				width: 50px;
+				height: 50px;
+				margin-right: 7px;
+			}
+			
+			paper-button {
+				text-transform: none;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 17px;
+				border: 1px solid rgba(255, 255, 255, 0.6);
+				width: 66%;
+				align-self: center;
+				padding: 5px;
+			}
+			
+			paper-button:hover {
+				background-color: rgba(255, 255, 255, 0.4);
+				color: #999999;
+			}
+		</style>
 
-            #card {
-                height: 100%;
-            }
+		<paper-card id="card" class="layout vertical">
+			<div id="title" class="layout horizontal">
+				<iron-icon icon="{{icon}}"></iron-icon><span>{{title}}</span>
+			</div>
+			<paper-button on-tap="fireEvent">{{text}}</paper-button>
+		</paper-card>
 
-            #title {
-                color: rgba(255, 255, 255, 0.61);
-                margin: 12px;
-                font-size: 17px;
-                display: flex;
-                align-items:center;
-            }
-
-                #title iron-icon {
-                    width: 50px;
-                    height: 50px;
-                    margin-right: 7px;
-                }
-
-            paper-button {
-                text-transform: none;
-                color: rgba(255, 255, 255, 0.6);
-                font-size: 17px;
-                border: 1px solid rgba(255, 255, 255, 0.6);
-                ;
-                width: 66%;
-                align-self: center;
-                padding: 5px;
-            }
-        </style>
-
-        <paper-card id="card" class="layout vertical">
-            <div id="title" class="layout horizontal">
-                <iron-icon icon="{{icon}}"></iron-icon><span>{{title}}</span>
-            </div>
-            <paper-button on-tap="fireEvent">{{text}}</paper-button>
-        </paper-card>
-
-    </template>
+	</template>
     <script>
         Polymer({
             is: 'ic-action-card',
@@ -61,11 +65,11 @@
                 color: String
             },
 
-            ready: function () {
+            ready: function() {
                 this.$.card.style.backgroundColor = this.color;
             },
 
-            fireEvent: function (e) {
+            fireEvent: function(e) {
                 this.fire('fire-event');
             }
         });

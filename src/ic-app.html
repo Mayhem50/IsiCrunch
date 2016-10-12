@@ -20,7 +20,7 @@
     <template>
         <style is="custom-style" include="iron-flex iron-flex-alignment shared-styles">
             :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #2b2b2b;
         --app-secondary-color: black;
 
         display: block;
@@ -45,7 +45,7 @@
       .drawer-list{      
         display: flex;
         flex-direction: column;
-        padding-left:5px;
+        padding-left:12px;
       }
 
       .drawer-link{
@@ -55,33 +55,44 @@
       }
 
       .link-content{          
-          width: 173px;
+          width: 81.8%;
       }
 
       .drawer-link .dummy{
-          width:10px;
-          background-color:#515151;
+          width:6px;
+          background-color:#666666;
       }
       
       .drawer-link a {
-        display: block;
+        display: flex;
         padding: 0 16px;
         text-decoration: none;
-        line-height: 40px;
-        color: #ffffff;
-        background-color:#434343;
+        line-height: 52px;
+        color: #666666;
+        background-color:#2b2b2b;
         width:100%;
+        align-items: center;
+      }
+
+      .drawer-link iron-icon{
+          margin-right:10px;
+          width: 20px;
+          height:20px;
       }
 
       .drawer-list .drawer-link.iron-selected a {
-        color: black;
+        color: #c5c5c5;
         font-weight: bold;      
-        background-color:#d8d8d8;
+        background-color:#515151;
+      }
+
+      .drawer-list .drawer-link.iron-selected .dummy {    
+        background-color:#c5c5c5;
       }
 
       app-drawer{
           --app-drawer-content-container:{
-                background-color:#3d3d3d;
+                background-color:#2b2b2b;
                 color: #ffffff;
           };         
       }
@@ -95,7 +106,7 @@
       }
 
       .logged-toolbar{
-          background-color:#3d3d3d;
+          background-color:#2b2b2b;
           justify-content: flex-end;
       }
       
@@ -120,8 +131,8 @@
       }
 
       #isi-logo{
-          width:95px;
-          height:64px;
+	    width: 150px;
+	    height: 91px;
       }
 
       #links{          
@@ -140,7 +151,7 @@
           align-items: baseline;
       }
 
-      #end-toolbar:hover{
+      #end-toolbar paper-button:hover{
           color:#ffffff;
       }
 
@@ -184,7 +195,7 @@
       }
 
       #fakeDrawer{
-          width:205px;
+          width:202px;
           height: 615px;
       }
 
@@ -202,18 +213,18 @@
                 <app-toolbar>
                     <div id="customer-logo"></div>
                 </app-toolbar>
-                <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                <iron-selector selected="[[drawerPage]]" attr-for-selected="name" class="drawer-list" role="navigation">
                     <div name="dashboard" class="drawer-link">
                         <div class="dummy">&nbsp;</div>
-                        <div class="layout vertical link-content">
-                            <a href="/dashboard">DASHBOARD</a>
+                        <div class="layout vertical link-content">                        
+                            <a href="/dashboard"><iron-icon icon="ic-icons:dashboard"></iron-icon> DASHBOARD</a>
                         </div>
                     </div>
                     <div name="catalogue" class="drawer-link" on-tap="toggleDrawer">
                         <div class="dummy">&nbsp;</div>
-                        <div class="layout vertical link-content">
-                            <a href="/catalogue">COLLECTION</a>
-                            <iron-collapse id="fakeDrawerCollapse">
+                        <div class="layout vertical link-content">  
+                            <a href="/catalogue"><iron-icon icon="ic-icons:catalogue"></iron-icon>COLLECTION</a>
+                            <iron-collapse id="fakeDrawerCollapse" opened="[[drawerOpened]]">
                                 <div id="fakeDrawer"></div>
                             </iron-collapse>
                         </div>
@@ -221,13 +232,13 @@
                     <div name="archives" class="drawer-link">
                         <div class="dummy">&nbsp;</div>
                         <div class="layout vertical link-content">
-                            <a href="/dashboard">ARCHIVES</a>
+                            <a><iron-icon icon="ic-icons:archive"></iron-icon>ARCHIVES</a>
                         </div>
                     </div>
                     <div name="trash" class="drawer-link">
                         <div class="dummy">&nbsp;</div>
-                        <div class="layout vertical link-content">
-                            <a href="/dashboard">TRASH</a>
+                        <div class="layout vertical link-content">  
+                            <a> <iron-icon icon="ic-icons:trash"></iron-icon>TRASH</a>
                         </div>
                     </div>
                 </iron-selector>
@@ -241,7 +252,7 @@
 
                         <!-- Home region -->
                         <div id="home-toolbar" class="layout horizontal justified">
-                            <embed id="isi-logo" type="image/svg+xml" src="../images/home/logo_header.svg" />
+                            <iron-icon id="isi-logo" icon="ic-icons:isi-header-logo"></iron-icon>
                             <iron-selector id="links" selected="2">
                                 <paper-button><a href="http://www.isicrunch.com">Company</a></paper-button>
                                 <paper-button><a>Product</a></paper-button>
@@ -312,59 +323,62 @@
                     observer: '_loggedChanged'
                 },
 
-                book : Object
+                book: Object,
+
+                drawerOpened: {
+                    type: Boolean,
+                    value: false
+                }
             },
 
             observers: [
-              '_routePageChanged(routeData.page)'
+                '_routePageChanged(routeData.page)'
             ],
 
-            ready: function () {
-                this.async(function () {
+            ready: function() {
+                this.async(function() {
                     this.logged = window.sessionStorage.getItem('log');
                 }.bind(this));
 
                 this.ariane = 'home';
             },
 
-            _routePageChanged: function (page) {
+            _routePageChanged: function(page) {
+                this.drawerPage = page == 'navigation' ? 'catalogue' : page;
+
                 if (page == 'dashboard') {
                     this.homeSelected = true;
                     this.editionSelected = false;
-                    this.$.fakeDrawerCollapse.hide();
-                }
-                else if (page == 'catalogue') {
-                    if (this.book) {
-                        this.homeSelected = false;
-                        this.editionSelected = true;
-                        this.$.fakeDrawerCollapse.show();
-                    }
-                    else { return;}
+
+                    this.drawerOpened = false;
+                } else if (page == 'catalogue') {
+                    this.homeSelected = false;
+                    this.editionSelected = true;
+
+                    if (this.book)
+                        this.drawerOpened = true;
                 }
 
                 if (!this.logged) {
-                    this.page = page || 'home';
-                }
-
-                else {
+                    this.page = 'home';
+                } else {
                     this.page = page || 'dashboard';
                 }
             },
 
-            _pageChanged: function (page) {
+            _pageChanged: function(page) {
                 var resolvedPageUrl = this.resolveUrl('ic-' + page + '.html');
                 this.importHref(resolvedPageUrl, null, this._showPage404, true);
             },
 
-            _loggedChanged: function (e) {
+            _loggedChanged: function(e) {
 
                 if (!this.logged) {
                     this.$.drawer.close();
 
                     this.$.drawer.classList.add('hidden');
                     this.$.drawer.classList.remove('visible')
-                }
-                else {
+                } else {
                     this.$.drawer.open();
 
                     this.$.drawer.classList.add('visible');
@@ -376,15 +390,14 @@
                 if (this.logged) {
                     this.set('routeData.page', 'dashboard');
                     window.sessionStorage.setItem('log', true);
-                }
-                else {
+                } else {
                     this.set('routeData.page', '');
                 }
 
                 this._setToolbar();
             },
 
-            _setToolbar: function () {
+            _setToolbar: function() {
                 if (this.logged) {
                     this.$.toolbar.classList.remove('default-toolbar');
                     this.$.toolbar.classList.add('logged-toolbar');
@@ -394,8 +407,7 @@
 
                     this.$$('#webapp-toolbar').classList.add('visible');
                     this.$$('#webapp-toolbar').classList.remove('hidden');
-                }
-                else {
+                } else {
                     this.$.toolbar.classList.remove('logged-toolbar');
                     this.$.toolbar.classList.add('default-toolbar');
 
@@ -407,29 +419,29 @@
                 }
             },
 
-            signOut:function(){
+            signOut: function() {
                 this.logged = false;
                 window.sessionStorage.removeItem('log');
             },
 
-            _showPage404: function () {
+            _showPage404: function() {
                 this.page = 'view404';
             },
 
-            showBook: function (e) {
+            showBook: function(e) {
                 this.book = e.detail.book;
                 this.set('routeData.page', 'catalogue');
 
                 this.$.fakeDrawer.style.backgroundImage = 'url("../images/drawer/' + this.book.fakeDrawer + '")';
             },
 
-            toggleDrawer: function () {
-                if (this.book) {
+            toggleDrawer: function() {
+                if (this.book && this.page != 'navigation') {
                     this.$.fakeDrawerCollapse.toggle();
                 }
             },
 
-            gotoNav: function () {
+            gotoNav: function() {
                 this.set('routeData.page', 'navigation');
             }
         });
