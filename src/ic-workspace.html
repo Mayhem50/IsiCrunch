@@ -20,6 +20,9 @@
                 background-color: #ebebeb;
                 color: #666666;
                 height:40px;
+                padding-left:5px;
+                display:flex;
+                align-items:center;
             }
 
             #content {
@@ -35,7 +38,7 @@
                 <template is="dom-repeat" items="[[books]]">
                     <ic-bookwork book="[[item]]" on-tap="showBook"></ic-bookwork>
                 </template>
-        </div>
+    </div>
 
     </template>
     <script>
@@ -45,9 +48,8 @@
             properties: {
                 books: {
                     type: Object,
-                    value: function () {
-                        return [
-                        {
+                    value: function() {
+                        return [{
                             EAN: '978-0-201-3796-2',
                             ISBN: '75123',
                             title: 'Over Resteless Dream Seas',
@@ -59,8 +61,7 @@
                             fakeNavigation: '01.jpg',
                             fakeDrawer: '01.jpg',
                             fakeRightDrawer: '01.jpg'
-                        },
-                        {
+                        }, {
                             EAN: '426-0-048-81270-6',
                             ISBN: '97814',
                             title: 'Mobydick',
@@ -72,8 +73,7 @@
                             fakeNavigation: '01.jpg',
                             fakeDrawer: '01.jpg',
                             fakeRightDrawer: '01.jpg'
-                        },
-                        {
+                        }, {
                             EAN: '400-0-000-49820-9',
                             ISBN: '65721',
                             title: 'Guide du routard',
@@ -85,8 +85,7 @@
                             fakeNavigation: '01.jpg',
                             fakeDrawer: '01.jpg',
                             fakeRightDrawer: '01.jpg'
-                        },
-                        {
+                        }, {
                             EAN: '082-4-27402495-7',
                             ISBN: '01296',
                             title: 'Polymer Learn',
@@ -98,18 +97,19 @@
                             fakeNavigation: '01.jpg',
                             fakeDrawer: '01.jpg',
                             fakeRightDrawer: '01.jpg'
-                        }
-                        ];
+                        }];
                     }
                 }
             },
 
-            ready: function () {
+            ready: function() {
 
             },
 
-            showBook: function (e) {
-                this.fire('show-book', { book: e.model.item });
+            showBook: function(e) {
+                this.fire('show-book', {
+                    book: e.model.item
+                });
             }
         });
     </script>
